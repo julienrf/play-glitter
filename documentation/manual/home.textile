@@ -1,0 +1,59 @@
+h1. Play! Glitter Module
+
+This module provides a seamlessly integration of "Glitter":glitter in "Play! framework":http://www.playframework.org.
+
+h2. Installation
+
+Install and enable this module as any other "Play! module(Play! Documentation)":http://www.playframework.org/documentation/latest/modules.
+
+h2. Controllers support
+
+The module defines a trait @GlitterController@ that you can mix in your application controllers:
+
+bc. import play._
+import play.mvc._
+
+object Application extends Controller with GlitterController {
+  // …
+}
+
+This trait defines a @Glitter(content: Xml)@ result type, taking @glitter.Xml@ content as parameter and rendering it as HTML.
+
+Say you have defined your Glitter templates in a @Templates@ object, you can use this result type like this:
+
+bc. object Application extends Controller with GlitterController {
+  def index = Glitter(Templates.index)
+}
+
+There’s also an implicit conversion from @Xml@ to @Result@, so if you declare your action as explicitely returning a @Result@ you don’t need to wrap you template application in a @Glitter()@ call:
+
+bc. object Application extends Controller with GlitterController {
+  def index: Result = Templates.index
+}
+
+h2. Views support
+
+Just write you Glitter templates as usual. However, the module defines some helper to integrate better with Play!. Start by importing them:
+
+bc. import play.modules.glitter._
+
+Then you can use the @errors@, @flash@, @lang@, @messages@, @params@, @request@ and @session@ usual Play! implicit template objects:
+
+bc.. import gitter._
+import play.moules.glitter._
+
+object Templates {
+  def index = 'div :: session.get("user")
+}
+
+p. Furthermore, the module defines two more helpers. The first one can retrieve i18n messages:
+
+bc.   def index = 'div :: &("hello")
+
+And the second one makes reverse routing from an action name and its parameters:
+
+bc.   def index(user: User) = 'a %('href -> @@("Application.show", user.id)) :: "User profile"
+
+h2. Sample application
+
+See the following "sample application":play-glitter-sample.

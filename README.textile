@@ -1,0 +1,5 @@
+h1. Module Glitter
+
+This module provides a seamlessly integration of "Glitter":glitter in "Play! framework":http://www.playframework.org.
+
+See the "documentation":play-glitter/blob/master/documentation/manual/home.textile or the "sample application":play-glitter-sample for more information.
