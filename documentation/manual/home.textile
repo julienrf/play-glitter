@@ -1,6 +1,6 @@
 h1. Play! Glitter Module
 
-This module provides a seamlessly integration of "Glitter":glitter in "Play! framework":http://www.playframework.org.
+This module provides a seamlessly integration of "Glitter":https://github.com/julienrf/glitter in "Play! framework":http://www.playframework.org.
 
 h2. Installation
 
@@ -10,14 +10,14 @@ h2. Controllers support
 
 The module defines a trait @GlitterController@ that you can mix in your application controllers:
 
-bc. import play._
+bc.. import play._
 import play.mvc._
 
 object Application extends Controller with GlitterController {
   // …
 }
 
-This trait defines a @Glitter(content: Xml)@ result type, taking @glitter.Xml@ content as parameter and rendering it as HTML.
+p. This trait defines a @Glitter(content: Xml)@ result type, taking @glitter.Xml@ content as parameter and rendering it as HTML.
 
 Say you have defined your Glitter templates in a @Templates@ object, you can use this result type like this:
 
@@ -40,7 +40,7 @@ bc. import play.modules.glitter._
 Then you can use the @errors@, @flash@, @lang@, @messages@, @params@, @request@ and @session@ usual Play! implicit template objects:
 
 bc.. import gitter._
-import play.moules.glitter._
+import play.modules.glitter._
 
 object Templates {
   def index = 'div :: session.get("user")
@@ -56,4 +56,4 @@ bc.   def index(user: User) = 'a %('href -> @@("Application.show", user.id)) :: 
 
 h2. Sample application
 
-See the following "sample application":play-glitter-sample.
+See the following "sample application":https://github.com/julienrf/play-glitter-sample.
